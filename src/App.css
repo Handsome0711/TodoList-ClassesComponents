@@ -1,0 +1,49 @@
+.complete{
+  color: grey;
+  text-decoration: line-through;
+}
+.new-task{
+  width: 290px;
+  font-size: 13px;
+  padding: 6px 0 4px 10px;
+  border: 1px solid #cecece;
+  background: #F6F6f6;
+  border-radius: 8px;
+}
+.delete-button, .add-button{
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  height: 40px;
+  margin: 2px 0;
+  border: solid 1px transparent;
+  border-radius: 4px;
+  padding: 0.5em 1em;
+  color: #ffffff;
+  background-color: #CC0033;
+}
+.edit-button{
+  width:40px;
+}
+.tasks{
+  margin-right: 20px;
+  padding-left: 0px;
+}
+.tasks li{
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+  line-height: 40px;
+  transition: .2s;
+}
+.tasks li:hover{
+  background-color: #CCFFFF;
+
+}
+.tasks li label{
+  padding-left: 10px;
+  width: 100%;
+  cursor: pointer;
+}

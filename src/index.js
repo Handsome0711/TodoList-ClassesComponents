@@ -1,0 +1,15 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import Lists from './Lists';
+import * as serviceWorker from './serviceWorker';
+import {BrowserRouter} from "react-router-dom";
+
+ReactDOM.render((
+    <BrowserRouter>
+        <Lists />
+    </BrowserRouter>
+), document.getElementById('root'));
+
+
+serviceWorker.unregister();
