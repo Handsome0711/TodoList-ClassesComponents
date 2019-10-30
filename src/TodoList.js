@@ -18,10 +18,10 @@ class TodoList extends React.Component{
    debugger
   }
   getData(){
-    axios.get('http://5da3023676c28f0014bbe66c.mockapi.io/todo/tasks/1')
+    axios.get('http://5da3023676c28f0014bbe66c.mockapi.io/todo/tasks/')
         .then(res=>{
           this.setState({
-              tasks:res.data.tasks
+              tasks:res.data
           })
         });
   }
@@ -44,9 +44,10 @@ class TodoList extends React.Component{
     });
     let updatedTasks = [...this.state.tasks, newTask];
 
-    axios.put('http://5da3023676c28f0014bbe66c.mockapi.io/todo/tasks/1',
+    axios.post('http://5da3023676c28f0014bbe66c.mockapi.io/todo/tasks',
         {
-          tasks: updatedTasks
+            message: newTask.message,
+            complete:newTask.complete,
         })
         .then(res=>{
           console.log("+");
@@ -54,7 +55,7 @@ class TodoList extends React.Component{
         })
   }
   deleteItem = (id) => {
-    axios.delete('http://5da3023676c28f0014bbe66c.mockapi.io/todo/tasks/1' + id)
+    axios.delete('http://5da3023676c28f0014bbe66c.mockapi.io/todo/tasks/' + id)
         .then(res=>{
           console.log("+");
           this.getData();
@@ -97,7 +98,8 @@ class TodoList extends React.Component{
    }
    editItem = (e) =>{
      e.preventDefault();
-    axios.put('http://5da3023676c28f0014bbe66c.mockapi.io/todo/lists/tasks' + this.state.currentElementId,{
+     debugger
+    axios.put('http://5da3023676c28f0014bbe66c.mockapi.io/todo/tasks/' + this.state.currentElementId,{
       message: this.state.inputText
     })
         .then(res=>{
@@ -111,9 +113,9 @@ class TodoList extends React.Component{
   render() {
     let acceptButton = () =>{
       if(this.state.editItem===false){
-        return  <button onClick={this.handleSubmit} type="submit">Add Task</button>
+        return  <button className="add-button" onClick={this.handleSubmit} type="submit">Add Task</button>
       }
-      else return <button onClick={this.editItem} type="submit">Accept</button>
+      else return <button className="add-button" onClick={this.editItem} type="submit">Accept</button>
     }
     let todoElements = this.state.tasks.map( t => <TodoItems message={t.message}
                                                              id={t.id}
@@ -130,7 +132,7 @@ class TodoList extends React.Component{
     return <div>
       <h1>TodoList</h1>
       <form onSubmit={this.state.editItem===false ? this.handleSubmit : this.editItem}>
-        <input type="text" value={this.state.inputText} onChange={this.handleChange}/>
+        <input className="new-task" type="text" value={this.state.inputText} onChange={this.handleChange}/>
         {acceptButton()}
       </form>
       <ul className="tasks">

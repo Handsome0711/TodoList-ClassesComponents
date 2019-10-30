@@ -4,11 +4,10 @@ import './index.css';
 import Lists from './Lists';
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter} from "react-router-dom";
+import TodoList from "./TodoList";
 
 ReactDOM.render((
-    <BrowserRouter>
-        <Lists />
-    </BrowserRouter>
+        <TodoList />
 ), document.getElementById('root'));
 
 

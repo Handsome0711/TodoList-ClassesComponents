@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import {Link, NavLink, Route, Switch} from 'react-router-dom';
+import TodoItems from "./TodoItems";
 import axios from 'axios';
 import TodoList from "./TodoList";
 
@@ -13,7 +14,6 @@ class Lists extends React.Component {
             currentId: 0
         };
         this.getData();
-        debugger
     }
     getData(){
         axios.get('http://5da3023676c28f0014bbe66c.mockapi.io/todo/lists')
@@ -29,10 +29,13 @@ class Lists extends React.Component {
         })
     }
     addNewProject=()=>{
-        debugger;
+        this.getData();
+        console.log(this.state)
         this.setState({
             currentId: this.state.lists.length
         });
+        console.log(this.state);
+
         const newProject = {
             id: this.state.lists.length+1,
             to: '/'+ this.state.currentId,
