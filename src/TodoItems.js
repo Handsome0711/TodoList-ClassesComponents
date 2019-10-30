@@ -8,11 +8,6 @@ class TodoItems extends React.Component {
             message: this.props.message
         }
     }
-    handleChange = (e) =>{
-        this.setState({
-            message: e.target.value
-        })
-    }
     render() {
         return <li>
             <button className="edit-button" onClick={()=>this.props.putTextInInput(this.props.message, this.props.id)}>edit</button>

@@ -15,10 +15,11 @@ class TodoList extends React.Component{
       editItem: false
     };
    this.getData();
-   debugger
   }
   getData(){
-    axios.get('http://5da3023676c28f0014bbe66c.mockapi.io/todo/tasks/')
+      let url = window.location.href;
+      let id = url.substring(url.lastIndexOf('/') + 1);
+      axios.get('http://5da3023676c28f0014bbe66c.mockapi.io/todo/lists/'+id+'/tasks')
         .then(res=>{
           this.setState({
               tasks:res.data
@@ -43,8 +44,9 @@ class TodoList extends React.Component{
       currentElementId: this.state.currentElementId +1
     });
     let updatedTasks = [...this.state.tasks, newTask];
-
-    axios.post('http://5da3023676c28f0014bbe66c.mockapi.io/todo/tasks',
+      let url = window.location.href;
+      let id = url.substring(url.lastIndexOf('/') + 1);
+    axios.post('http://5da3023676c28f0014bbe66c.mockapi.io/todo/lists/'+id+'/tasks',
         {
             message: newTask.message,
             complete:newTask.complete,

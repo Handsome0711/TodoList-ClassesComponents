@@ -7,7 +7,9 @@ import {BrowserRouter} from "react-router-dom";
 import TodoList from "./TodoList";
 
 ReactDOM.render((
-        <TodoList />
+    <BrowserRouter>
+        <Lists />
+    </BrowserRouter>
 ), document.getElementById('root'));
 
 
