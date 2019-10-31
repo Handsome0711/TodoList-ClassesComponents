@@ -5,20 +5,31 @@
 .new-task{
   width: 290px;
   font-size: 13px;
-  padding: 6px 0 4px 10px;
+  padding: 7px 0 7px 10px;
   border: 1px solid #cecece;
   background: #F6F6f6;
-  border-radius: 8px;
+  border-radius: 1px;
 }
-.delete-button, .add-button{
+.add-button{
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  height: 30px;
+  margin: 2px 0;
+  border: solid 1px transparent;
+  padding: 0.5em 1em;
+  color: #ffffff;
+  background-color: #CC0033;
+}
+.delete-button{
   cursor: pointer;
   display: inline-block;
   text-align: center;
   text-decoration: none;
   height: 40px;
-  margin: 2px 0;
+  margin: 1px 0;
   border: solid 1px transparent;
-  border-radius: 4px;
   padding: 0.5em 1em;
   color: #ffffff;
   background-color: #CC0033;
@@ -30,7 +41,7 @@
   margin-right: 20px;
   padding-left: 0px;
 }
-.tasks li{
+li{
   cursor: pointer;
   display: flex;
   justify-content: space-between;
@@ -46,4 +57,60 @@
   padding-left: 10px;
   width: 100%;
   cursor: pointer;
+}
+.projects{
+  float: left;
+  height: 100vh;
+  margin-left: 20px;
+
+}
+.new-project{
+  width: 150px;
+  font-size: 13px;
+  padding: 7px 0 7px 10px;
+  border: 1px solid #cecece;
+  background: #F6F6f6;
+  border-radius: 1px;
+  margin-left: 30px;
+}
+.add-project-button{
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  height: 30px;
+  margin: 2px 0;
+  border: solid 1px transparent;
+  padding: 0.5em 0.7em;
+  color: #ffffff;
+  background-color: #CC0033;
+}
+.main{
+  width: 405px;
+  margin: 0 auto;
+}
+.links{
+  text-decoration: none;
+  padding-left: 10px;
+  width: 200px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+  line-height: 40px;
+  transition: .2s;
+}
+.active{
+  background-color: #CCFFFF;
+  padding-left: 10px;
+  width: 200px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+  line-height: 40px;
+  transition: .2s;
+}
+.links:hover{
+  background-color: #CCFFFF;
 }

@@ -12,19 +12,30 @@ class TodoList extends React.Component{
       ],
       inputText: "",
       currentElementId: 1,
-      editItem: false
+      editItem: false,
+        listId: 1
     };
-   this.getData();
   }
-  getData(){
+    componentWillReceiveProps(nextProps) {
       let url = window.location.href;
       let id = url.substring(url.lastIndexOf('/') + 1);
       axios.get('http://5da3023676c28f0014bbe66c.mockapi.io/todo/lists/'+id+'/tasks')
-        .then(res=>{
-          this.setState({
-              tasks:res.data
-          })
-        });
+          .then(res=>{
+              this.setState({
+                  tasks:res.data,
+                  listId:id
+              })
+          });
+  }
+
+    getData()
+   {
+      axios.get('http://5da3023676c28f0014bbe66c.mockapi.io/todo/lists/'+this.state.listId+'/tasks')
+          .then(res=>{
+              this.setState({
+                  tasks:res.data,
+              })
+          });
   }
 
   handleChange = (e) => {
@@ -46,7 +57,7 @@ class TodoList extends React.Component{
     let updatedTasks = [...this.state.tasks, newTask];
       let url = window.location.href;
       let id = url.substring(url.lastIndexOf('/') + 1);
-    axios.post('http://5da3023676c28f0014bbe66c.mockapi.io/todo/lists/'+id+'/tasks',
+    axios.post('http://5da3023676c28f0014bbe66c.mockapi.io/todo/lists/'+this.state.listId+'/tasks',
         {
             message: newTask.message,
             complete:newTask.complete,
@@ -57,7 +68,7 @@ class TodoList extends React.Component{
         })
   }
   deleteItem = (id) => {
-    axios.delete('http://5da3023676c28f0014bbe66c.mockapi.io/todo/tasks/' + id)
+    axios.delete('http://5da3023676c28f0014bbe66c.mockapi.io/todo/lists/'+this.state.listId+'/tasks/' + id)
         .then(res=>{
           console.log("+");
           this.getData();
@@ -65,7 +76,7 @@ class TodoList extends React.Component{
 
   }
   completeItem = (id) => {
-     axios.put('http://5da3023676c28f0014bbe66c.mockapi.io/todo/tasks/' + id, {
+     axios.put('http://5da3023676c28f0014bbe66c.mockapi.io/todo/lists/'+this.state.listId+'/tasks/'+id, {
        complete: false
      })
          .then(res => {
@@ -73,7 +84,7 @@ class TodoList extends React.Component{
          })
    }
    uncompleteItem = (id) => {
-     axios.put('http://5da3023676c28f0014bbe66c.mockapi.io/todo/tasks/' + id, {
+     axios.put('http://5da3023676c28f0014bbe66c.mockapi.io/todo/lists/'+this.state.listId+'/tasks/'+id, {
        complete: true
      })
          .then(res => {
@@ -101,7 +112,7 @@ class TodoList extends React.Component{
    editItem = (e) =>{
      e.preventDefault();
      debugger
-    axios.put('http://5da3023676c28f0014bbe66c.mockapi.io/todo/tasks/' + this.state.currentElementId,{
+    axios.put('http://5da3023676c28f0014bbe66c.mockapi.io/todo/lists/'+ this.state.listId +'/tasks/' + this.state.currentElementId,{
       message: this.state.inputText
     })
         .then(res=>{
@@ -132,7 +143,7 @@ class TodoList extends React.Component{
     />);
 
     return <div>
-      <h1>TodoList</h1>
+      <h1>To-Do List</h1>
       <form onSubmit={this.state.editItem===false ? this.handleSubmit : this.editItem}>
         <input className="new-task" type="text" value={this.state.inputText} onChange={this.handleChange}/>
         {acceptButton()}
